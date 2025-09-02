@@ -1,316 +1,554 @@
 <template>
-  <div class="homepage">
-    <!-- 头部标题 -->
-    <header class="header">
-      <div class="container">
-        <h1 class="title">
-          <span class="brand">术天 AI</span>
-          为您提供最新的数字人技术服务
-        </h1>
-        <div class="header-decoration"></div>
+  <div class="dashboard-page">
+    <!-- 页面标题 -->
+    <header class="page-header">
+      <div class="header-content">
+        <h1 class="page-title">工作台</h1>
+        <p class="page-subtitle">欢迎使用 AIGC 智能内容生成平台</p>
       </div>
     </header>
 
-    <!-- 服务卡片区域 -->
-    <main class="main-content">
-      <div class="container">
-        <div class="services-grid">
-          <!-- 形象克隆卡片 -->
-          <div class="service-card">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- 数据统计卡片 -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon success">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">2,847</div>
+            <div class="stat-label">生成内容</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon primary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="8.5" cy="7" r="4"/>
+              <path d="M20 8v6M23 11h-6"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">156</div>
+            <div class="stat-label">活跃用户</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon warning">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">98.2%</div>
+            <div class="stat-label">成功率</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon info">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">24.7m</div>
+            <div class="stat-label">处理时长</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 服务功能区域 -->
+    <section class="services-section">
+      <div class="section-header">
+        <h2 class="section-title">核心服务</h2>
+        <p class="section-subtitle">专业的 AI 内容生成工具集</p>
+      </div>
+      <div class="services-grid">
+        <!-- 形象克隆卡片 -->
+        <div class="service-card" @click="goToImageTraining">
+          <div class="service-header">
+            <div class="service-icon image">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
               </svg>
             </div>
-            <h3 class="card-title">形象克隆</h3>
-            <p class="card-description">轻松制作您的数字形象</p>
-            <div class="card-footer">
-              <button class="learn-more-btn" @click="goToImageTraining">了解更多</button>
-            </div>
+            <div class="service-badge hot">Hot</div>
           </div>
+          <h3 class="service-title">形象克隆</h3>
+          <p class="service-description">基于深度学习技术，快速生成高质量数字形象</p>
+          <div class="service-stats">
+            <span class="stat-item">✓ 支持多角度</span>
+            <span class="stat-item">✓ 实时生成</span>
+          </div>
+        </div>
 
-          <!-- 声音克隆卡片 -->
-          <div class="service-card">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="11 5,6 9,2 9,2 15,6 15,11 19,11 5"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <!-- 声音克隆卡片 -->
+        <div class="service-card" @click="goToSpeakerTraining">
+          <div class="service-header">
+            <div class="service-icon voice">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
               </svg>
             </div>
-            <h3 class="card-title">声音克隆</h3>
-            <p class="card-description">音色、语气、节奏通近真人</p>
-            <div class="card-footer">
-              <button class="learn-more-btn" @click="goToSpeakerTraining">了解更多</button>
-            </div>
           </div>
+          <h3 class="service-title">声音克隆</h3>
+          <p class="service-description">智能语音合成，保留原声特色和情感表达</p>
+          <div class="service-stats">
+            <span class="stat-item">✓ 情感识别</span>
+            <span class="stat-item">✓ 多语言</span>
+          </div>
+        </div>
 
-          <!-- 数字分身卡片 -->
-          <div class="service-card">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-                <circle cx="12" cy="10" r="3"/>
+        <!-- 数字分身卡片 -->
+        <div class="service-card" @click="goToVideoGeneration">
+          <div class="service-header">
+            <div class="service-icon video">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23,7 16,12 23,17 23,7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
               </svg>
             </div>
-            <h3 class="card-title">数字分身</h3>
-            <p class="card-description">利用声音(文字)和形象创作数字人作品</p>
-            <div class="card-footer">
-              <button class="learn-more-btn" @click="goToVideoGeneration">了解更多</button>
-            </div>
           </div>
+          <h3 class="service-title">数字分身</h3>
+          <p class="service-description">结合形象和声音，创造逼真的数字人视频</p>
+          <div class="service-stats">
+            <span class="stat-item">✓ 4K画质</span>
+            <span class="stat-item">✓ 自然表情</span>
+          </div>
+        </div>
 
-          <!-- 智能体卡片 -->
-          <div class="service-card">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 12l2 2 4-4"/>
-                <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h9l4 4v-4z"/>
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+        <!-- 智能体卡片 -->
+        <div class="service-card" @click="goToAgentManagement">
+          <div class="service-header">
+            <div class="service-icon agent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="10" rx="2" ry="2"/>
+                <circle cx="12" cy="5" r="2"/>
+                <path d="M12 7v4"/>
+                <line x1="8" y1="16" x2="8" y2="16"/>
+                <line x1="16" y1="16" x2="16" y2="16"/>
               </svg>
             </div>
-            <h3 class="card-title">智能体</h3>
-            <p class="card-description">定制专属知识库</p>
-            <div class="card-footer">
-              <button class="learn-more-btn" @click="goToAgentManagement">了解更多</button>
-            </div>
+            <div class="service-badge new">New</div>
+          </div>
+          <h3 class="service-title">智能体</h3>
+          <p class="service-description">构建专属AI助手，定制化知识库和对话能力</p>
+          <div class="service-stats">
+            <span class="stat-item">✓ 知识库</span>
+            <span class="stat-item">✓ 自学习</span>
           </div>
         </div>
       </div>
-    </main>
+    </section>
+
+    <!-- 最近活动 -->
+    <section class="activity-section">
+      <div class="section-header">
+        <h2 class="section-title">最近活动</h2>
+        <button class="btn btn-secondary">查看全部</button>
+      </div>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-icon success">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20,6 9,17 4,12"/>
+            </svg>
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">形象克隆任务完成</div>
+            <div class="activity-description">项目 "企业宣传片" 已成功生成数字形象</div>
+            <div class="activity-time">2分钟前</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">语音克隆处理中</div>
+            <div class="activity-description">正在为客户 A 生成个性化语音模型</div>
+            <div class="activity-time">15分钟前</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon info">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="8.5" cy="7" r="4"/>
+              <path d="M20 8v6M23 11h-6"/>
+            </svg>
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">新用户注册</div>
+            <div class="activity-description">欢迎新用户 "张三" 加入平台</div>
+            <div class="activity-time">1小时前</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'HomePage',
-    data() {
-      return {
-        // 可以在这里添加动态数据
-      }
-    },
-    methods: {
-      // 可以在这里添加方法
-      goToImageTraining(){
-        this.$router.push('/imageTraining')
-      },
-      goToSpeakerTraining(){
-        this.$router.push('/speaker-training')
-      },
-      goToVideoGeneration(){
-        this.$router.push('/video-generation')
-      },
-      goToAgentManagement(){
-        this.$router.push('/agent-management')
-      }
-    }
-  }
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToImageTraining = () => {
+  router.push('/imageTraining')
+}
+
+const goToSpeakerTraining = () => {
+  router.push('/speaker-training')
+}
+
+const goToVideoGeneration = () => {
+  router.push('/video-generation')
+}
+
+const goToAgentManagement = () => {
+  router.push('/agent-management')
+}
 </script>
 
 <style scoped>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+.dashboard-page {
+  min-height: 100vh;
+  background: var(--color-background-secondary);
+}
 
-  .homepage {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  }
+/* 页面标题 */
+.page-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 32px 0;
+  margin-bottom: 32px;
+}
 
-  .container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-  /* 头部样式 */
-  .header {
-    padding: 100px 0 80px;
-    text-align: center;
-    color: white;
-  }
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
 
-  .title {
-    font-size: 3.5rem;
-    font-weight: 300;
-    margin-bottom: 40px;
-    line-height: 1.2;
-  }
+.page-subtitle {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
 
-  .brand {
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+/* 统计卡片 */
+.stats-section {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
 
-  .header-decoration {
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, #ffd700, #ffed4a);
-    margin: 0 auto;
-    border-radius: 2px;
-  }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
 
-  /* 主要内容区域 */
-  .main-content {
-    padding: 60px 0 100px;
-  }
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
 
+.stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.stat-icon.success {
+  background: var(--color-success);
+}
+
+.stat-icon.primary {
+  background: var(--color-primary-600);
+}
+
+.stat-icon.warning {
+  background: var(--color-warning);
+}
+
+.stat-icon.info {
+  background: var(--color-info);
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+/* 服务区域 */
+.services-section {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+
+.section-header {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--color-primary-200);
+}
+
+.service-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.service-icon.image {
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+}
+
+.service-icon.voice {
+  background: linear-gradient(135deg, var(--color-success), #059669);
+}
+
+.service-icon.video {
+  background: linear-gradient(135deg, var(--color-warning), #d97706);
+}
+
+.service-icon.agent {
+  background: linear-gradient(135deg, var(--color-info), #0891b2);
+}
+
+.service-badge {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  line-height: 1;
+}
+
+.service-badge.hot {
+  background: var(--color-error);
+  color: white;
+}
+
+.service-badge.new {
+  background: var(--color-success);
+  color: white;
+}
+
+.service-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.service-description {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.service-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.stat-item {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+/* 活动区域 */
+.activity-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.activity-list {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item:hover {
+  background: var(--color-background-secondary);
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.activity-icon.success {
+  background: var(--color-success);
+}
+
+.activity-icon.primary {
+  background: var(--color-primary-600);
+}
+
+.activity-icon.info {
+  background: var(--color-info);
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.activity-description {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header-content,
+  .stats-section,
+  .services-section,
+  .activity-section {
+    padding: 0 16px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    margin-top: 60px;
+    grid-template-columns: 1fr;
   }
-
-  /* 服务卡片样式 */
-  .service-card {
-    background: white;
-    border-radius: 16px;
-    padding: 35px 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 320px;
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-  }
-
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .card-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-
-  .card-icon svg {
-    width: 40px;
-    height: 40px;
-  }
-
-  .card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
-  }
-
-  .card-description {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 25px;
-  }
-
-  .card-footer {
-    margin-top: auto;
-  }
-
-  .learn-more-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .learn-more-btn:hover {
-    background: linear-gradient(135deg, #5a67d8, #6b46c1);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  /* 响应式设计 */
-  @media (max-width: 1640px) {
-    .container {
-      max-width: 1400px;
-      padding: 0 30px;
-    }
-
-    .services-grid {
-      gap: 40px;
-    }
-  }
-
-  @media (max-width: 1400px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-  }
-
-  @media (max-width: 1200px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
-    .title {
-      font-size: 3rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .title {
-      font-size: 2rem;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .service-card {
-      padding: 30px 20px;
-      min-height: auto;
-    }
-
-    .header {
-      padding: 60px 0 40px;
-    }
-
-    .container {
-      padding: 0 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .title {
-      font-size: 1.5rem;
-    }
-
-    .container {
-      padding: 0 15px;
-    }
-  }
+}
 </style>

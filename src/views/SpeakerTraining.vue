@@ -181,7 +181,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   export default {
     name: 'SpeakerTraining',
     data() {
@@ -339,7 +339,7 @@
 
           alert('提交成功！');
 
-        } catch (error) {
+        } catch {
           alert('提交失败，请重试');
         } finally {
           this.isSubmitting = false;
@@ -379,7 +379,7 @@
         }
       }
     },
-    beforeDestroy() {
+    beforeUnmount() {
       // 清理音频资源
       if (this.$refs.audioPlayer && this.$refs.audioPlayer.src) {
         URL.revokeObjectURL(this.$refs.audioPlayer.src);
@@ -397,56 +397,65 @@
 
   .speaker-training-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--color-background-secondary);
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   /* 页面标题 */
   .page-header {
-    padding: 60px 0 40px;
-    text-align: center;
-    color: white;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 32px 0;
+    margin-bottom: 32px;
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 28px;
     font-weight: 600;
-    margin-bottom: 10px;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
   }
 
   .page-subtitle {
-    font-size: 1.1rem;
-    opacity: 0.9;
+    font-size: 16px;
+    color: var(--color-text-secondary);
   }
 
   /* 主要内容 */
   .main-content {
-    padding-bottom: 60px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
   }
 
   /* 表单区域 */
   .form-section {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .form-card {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    transition: all 0.2s ease;
+  }
+
+  .form-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .form-title {
-    font-size: 1.5rem;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 30px;
+    color: var(--color-text-primary);
+    margin-bottom: 24px;
   }
 
   .form-group {
@@ -455,30 +464,33 @@
 
   .form-label {
     display: block;
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 500;
-    color: #333;
+    color: var(--color-text-primary);
     margin-bottom: 8px;
   }
 
   .form-input {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-base);
+    font-size: 14px;
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    transition: all 0.2s ease;
   }
 
   .form-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
   }
 
   .input-hint {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 5px;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 4px;
   }
 
   /* 上传区域 */
@@ -706,17 +718,24 @@
 
   /* 记录区域 */
   .records-section {
-    background: white;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .records-section > div {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    transition: all 0.2s ease;
   }
 
   .records-title {
-    font-size: 1.4rem;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
+    color: var(--color-text-primary);
+    margin-bottom: 24px;
   }
 
   .records-table-container {
@@ -737,24 +756,24 @@
   }
 
   .records-table th {
-    background: #f8f9fa;
+    background: var(--color-background-secondary);
     font-weight: 600;
-    color: #333;
+    color: var(--color-text-primary);
   }
 
   .record-id {
     font-family: 'Monaco', 'Consolas', monospace;
-    color: #666;
+    color: var(--color-text-secondary);
   }
 
   .record-name {
     font-weight: 500;
-    color: #333;
+    color: var(--color-text-primary);
   }
 
   .record-time {
-    color: #666;
-    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-size: 14px;
   }
 
   .status-badge {
@@ -765,18 +784,18 @@
   }
 
   .status-success {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--color-success-light);
+    color: var(--color-success);
   }
 
   .status-processing {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--color-warning-light);
+    color: var(--color-warning);
   }
 
   .status-failed {
-    background: #fecaca;
-    color: #991b1b;
+    background: var(--color-error-light);
+    color: var(--color-error);
   }
 
   .record-actions {

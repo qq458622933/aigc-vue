@@ -2,7 +2,7 @@
   <div class="video-generation-page">
     <!-- 页面标题 -->
     <header class="page-header">
-      <div class="container">
+      <div class="header-content">
         <h1 class="page-title">数字分身</h1>
         <p class="page-subtitle">利用声音和形象创作数字人作品</p>
       </div>
@@ -232,7 +232,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   export default {
     name: 'VideoGeneration',
     data() {
@@ -332,7 +332,7 @@
           this.formData = { selectedAvatar: null, selectedSpeaker: null, script: '' };
           this.activeTab = 'records';
           alert('提交成功！');
-        } catch (error) {
+        } catch {
           alert('提交失败，请重试');
         } finally {
           this.isSubmitting = false;
@@ -393,40 +393,48 @@
 
   .video-generation-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--color-background-secondary);
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .page-header {
-    padding: 60px 0 40px;
-    text-align: center;
-    color: white;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 32px 0;
+    margin-bottom: 32px;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 28px;
     font-weight: 600;
-    margin-bottom: 10px;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
   }
 
   .page-subtitle {
-    font-size: 1.1rem;
-    opacity: 0.9;
+    font-size: 16px;
+    color: var(--color-text-secondary);
   }
 
   .tab-navigation {
     display: flex;
-    background: white;
-    border-radius: 12px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
     padding: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
   }
 
   .tab-btn {
@@ -438,12 +446,12 @@
     padding: 12px 20px;
     border: none;
     background: transparent;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: var(--border-radius-base);
+    font-size: 14px;
     font-weight: 500;
-    color: #666;
+    color: var(--color-text-secondary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .tab-btn svg {
@@ -452,18 +460,20 @@
   }
 
   .tab-btn.active {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--color-primary-500);
     color: white;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-sm);
   }
 
   .tab-btn:hover:not(.active) {
-    background: #f8f9ff;
-    color: #667eea;
+    background: var(--color-background-secondary);
+    color: var(--color-primary-500);
   }
 
   .main-content {
-    padding-bottom: 60px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
   }
 
   .creation-section {
@@ -471,17 +481,23 @@
   }
 
   .form-card {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    transition: all 0.2s ease;
+  }
+
+  .form-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .form-title {
-    font-size: 1.5rem;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 30px;
+    color: var(--color-text-primary);
+    margin-bottom: 24px;
   }
 
   .form-group {
@@ -490,10 +506,10 @@
 
   .form-label {
     display: block;
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 500;
-    color: #333;
-    margin-bottom: 12px;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
   }
 
   .selection-grid {
@@ -687,10 +703,11 @@
   }
 
   .records-card {
-    background: white;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    transition: all 0.2s ease;
   }
 
   .records-header {
@@ -701,9 +718,9 @@
   }
 
   .records-title {
-    font-size: 1.4rem;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: var(--color-text-primary);
   }
 
   .records-filters {
@@ -743,31 +760,31 @@
   }
 
   .records-table th {
-    background: #f8f9fa;
+    background: var(--color-background-secondary);
     font-weight: 600;
-    color: #333;
+    color: var(--color-text-primary);
   }
 
   .record-id {
     font-family: 'Monaco', 'Consolas', monospace;
-    color: #666;
+    color: var(--color-text-secondary);
   }
 
   .record-name,
   .record-speaker {
     font-weight: 500;
-    color: #333;
+    color: var(--color-text-primary);
   }
 
   .record-script {
-    color: #666;
+    color: var(--color-text-secondary);
     max-width: 200px;
     word-break: break-word;
   }
 
   .record-time {
-    color: #666;
-    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-size: 14px;
   }
 
   .status-badge {
@@ -778,18 +795,18 @@
   }
 
   .status-success {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--color-success-light);
+    color: var(--color-success);
   }
 
   .status-processing {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--color-warning-light);
+    color: var(--color-warning);
   }
 
   .status-failed {
-    background: #fecaca;
-    color: #991b1b;
+    background: var(--color-error-light);
+    color: var(--color-error);
   }
 
   .record-actions {

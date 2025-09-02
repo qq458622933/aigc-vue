@@ -120,7 +120,7 @@
                 >
                 <button
                   type="button"
-                  @click="$refs.fileInput.click()"
+                  @click="($refs.fileInput as HTMLInputElement).click()"
                   class="upload-btn"
                 >
                   选择图片
@@ -163,7 +163,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { ref, reactive, onMounted } from 'vue'
 
   // 响应式数据
@@ -198,7 +198,7 @@
     if (file) {
       const reader = new FileReader()
       reader.onload = (e) => {
-        formData.avatar = e.target.result
+        formData.avatar = e.target?.result as string
       }
       reader.readAsDataURL(file)
     }
